@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stereo Hearts</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+  
+<button class="btnlogin-popup">add to playlist</button>
+<div class="wrapper1">
+  <span class="icon-close">
+     <ion-icon name="close"></ion-icon> 
+    <!-- <ion-icon name="close-outline"></ion-icon>  -->
+  </span>
+
+  <div class="form-box login">
+    <h2>Playlists</h2>
+    <form action="/songs" method="post" >
+      <%  playlists.forEach(item =>{ %>
+        <form action="/songs" method="post">
+          <input type="text" name="playlistname" value="<%= item.playlistname %>" style="display: none;">
+          <button name="addold" value="addold"><%= item.playlistname %></button>
+        </form>
+      <% }) %>
+      
+      <div class="login-register">
+        <p>
+          <a href="#" class="register-link">add to new playlist</a>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <div class="form-box register">
+    <h2>Create New Playlist</h2>
+    <form action="/songs" method="post" >
+            <div class="input-box">
+              <input type="text" required name="playlistname">
+              <label>Enter playlist name</label>
+            </div>
+      
+            <button type="submit" class="btn" name="addnew" value="addnew">Create</button>
+      <div class="login-register">
+        <p>
+          <a href="#" class="login-link">add to existing playlist</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>
+        
+
+        
+
+  <div class="wrapper">
+    <div class="top-bar">
+      <i class="material-icons">expand_more</i>
+      <span>Now Playing</span>
+      <i class="material-icons">more_horiz</i>
+    </div>
+    <div class="img-area">
+      <img src="images/<%= img %>.png" alt="<%= img %>">
+    </div>
+    <div class="song-details">
+      <p class="name"><%= sname %></p>
+      <p class="artist"><%= artist %></p>
+    </div>
+    <div class="progress-area">
+      <div class="progress-bar">
+        <audio id="main-audio" onload="play()" src="songs/<%= audio %>.mp3"></audio>
+      </div>
+      <div class="song-timer">
+        <span class="current-time">0:00</span>
+        <span class="max-duration">0:00</span>
+      </div>
+    </div>
+    <div class="controls">
+        
+      <form action="/songs" method="post">
+        <button class="prev" name="control" value="prev" type="submit"><i id="prev" class="material-icons">skip_previous</i></button>
+      </form>
+
+     
+
+        
+      <div class="play-pause">
+        <form action="/songs" method="post">
+            <button class="play" name="control" value="play" type="submit"><i id="play" class="material-icons">play_arrow</i></button>
+        </form>
+      </div>
+      
+        <form action="/songs" method="post">
+            <button class="next" name="control" value="next" type="submit"><i id="next" class="material-icons">skip_next</i></button>
+        </form>
+       
+    </div>
+  </div>
+  <script src="script.js"></script>
+
+</body>
+</html>

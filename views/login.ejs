@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stereo Hearts</title>
+    <link rel="stylesheet" href="log.css">
+</head>
+<body>
+    <div class="wrapper active-popup">
+        <span class="icon-close">
+           <ion-icon name="close"></ion-icon> 
+          <!-- <ion-icon name="close-outline"></ion-icon>  -->
+        </span>
+    
+        <div class="form-box login">
+          <h2>Login</h2>
+          <form action="/" method="post" >
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" required name="email">
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon">
+                <ion-icon name="lock-closed"></ion-icon>
+              </span>
+              <input type="password" required name="password">
+              <label>Password</label>
+            </div>
+            <p><%= check %></p>
+            <button type="submit" class="btn" name="reg" value="logi">Login</button>
+            <div class="login-register">
+              <p>
+                Don't have an account?
+                <a href="#" class="register-link">Register</a>
+              </p>
+            </div>
+          </form>
+        </div>
+    
+        <div class="form-box register">
+          <h2>Registration</h2>
+          <form action="/" method="post" >
+            <div class="input-box">
+              <span class="icon"><ion-icon name="person"></ion-icon></span>
+              <input type="text" name="name" required>
+              <label>Username</label>
+            </div>
+            <div class="input-box">
+              <span class="icon"><ion-icon name="mail"></ion-icon></span>
+              <input type="email" name="email" required>
+              <label>Email</label>
+            </div>
+            <div class="input-box">
+              <span class="icon">
+                <ion-icon name="lock-closed"></ion-icon>
+              </span>
+              <input type="password" name="password" required>
+              <label>Password</label>
+            </div>
+            <div class="remember-forgot">
+              <label><input type="checkbox">I agree to terms & conditions</label>
+            </div>
+            <button type="submit" class="btn" name="reg" value="regist">Register</button>
+            <div class="login-register">
+              <p>
+                Already have an account?
+                <a href="#" class="login-link">Login</a>
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+      <script src="log.js"></script>
+</body>
+</html>

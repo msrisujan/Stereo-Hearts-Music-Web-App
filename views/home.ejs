@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stereo Hearts</title>
+</head>
+<body>
+    <form action="/login" method="post">
+        <button name="home" value="login" type="submit">Login/SignUp</button>
+    </form>
+
+    <form action="/history" method="post">
+        <button name="home1" value="history" type="submit">history</button>
+    </form>
+
+    <form action="/playlist" method="post">
+        <button name="home1" value="logout" type="submit">Playlist</button>
+    </form>
+
+    <%  songslist.forEach(item => {%>
+        <form action="/songs" method="post">
+            <button name="song" value="<%= item.name %>"><h2><%= item.artist %> - <%= item.name %></h2></button>
+        </form>
+        
+    <%})%>
+
+    
+</body>
+</html>
