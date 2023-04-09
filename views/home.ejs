@@ -19,6 +19,10 @@
         <button name="home1" value="logout" type="submit">Playlist</button>
     </form>
 
+    <form action="/search" method="post">
+        <button name="home" value="search" type="submit">Search</button>
+    </form>
+
     <%  songslist.forEach(item => {%>
         <form action="/songs" method="post">
             <button name="song" value="<%= item.name %>"><h2><%= item.artist %> - <%= item.name %></h2></button>

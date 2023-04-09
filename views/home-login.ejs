@@ -7,8 +7,8 @@
     <title>Stereo Hearts</title>
 </head>
 <body>
-    <form action="/" method="post">
-        <button name="home" value="login" type="submit"><%= username %></button>
+    <form action="/profile" method="post">
+        <button name="home" value="profile" type="submit"><%= username %></button>
     </form>
 
     <form action="/" method="post">
@@ -22,6 +22,15 @@
     <form action="/playlist" method="post">
         <button name="home" value="playlist" type="submit">Playlist</button>
     </form>
+
+    <form action="/search" method="post">
+        <button name="home" value="search" type="submit">Search</button>
+    </form>
+
+    <form action="/liked" method="post">
+        <button name="home" value="liked" type="submit">Liked</button>
+    </form>
+
 
     <%  songslist.forEach(item => {%>
         <form action="/songs" method="post">

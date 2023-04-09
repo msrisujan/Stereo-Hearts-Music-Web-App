@@ -10,6 +10,16 @@
 <body>
   
 <button class="btnlogin-popup">add to playlist</button>
+
+<form action="/songs" method="post">
+  <button type="submit" name="like" value="<%= like %>"><%= like %></button>
+</form>
+<br>
+<div class="playlistcheck">
+  <p><%= checkplaylist %></p>
+</div>
+
+
 <div class="wrapper1">
   <span class="icon-close">
      <ion-icon name="close"></ion-icon> 
@@ -99,6 +109,5 @@
     </div>
   </div>
   <script src="script.js"></script>
-
 </body>
 </html>

@@ -42,6 +42,12 @@ var email = "";
 var check1 = "Please Login or Register";
 var check3 = "Email not registered";
 var check4 = "Incorrect password";
+var check5 = "Email already registered";
+var checksong1 = "";
+var checksong2 = "Song already in playlist"; 
+var checksong3 = "Song added to playlist";
+var like1 = "like";
+var like2 = "liked";
 
 
 app.get("/", function(req, res){
@@ -74,7 +80,15 @@ app.get("/songs", function(req, res){
             playlist = result;
             console.log(playlist);
         });
-    res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list});
+        connection.query('select * from liked where email= ? and songname = ?', [email,allMusic[index].name], function (err, result) {
+            if (err) throw err;
+            if(result.length === 0){
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like1});
+            }
+            else{
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like2});
+            }
+        });
     }
     else{
         res.redirect("/login");
@@ -138,6 +152,32 @@ app.get("/playlist-songs", function(req, res){
         res.redirect("/login");
     }
 });
+
+app.get("/profile", function(req, res){
+    if(isLogged === true){
+        connection.query('SELECT * from users where email = ?', [email], function (err, result) {
+            if (err) throw err;
+            var name = result[0].name;
+            res.render("profile",{username: name,email: email});
+        });
+    }
+    else{
+        res.redirect("/login");
+    }
+});
+
+app.get("/liked",function(req,res){
+    if(isLogged === true){
+        connection.query('SELECT * from liked where email = ?',[email], function (err,result){
+            if (err) throw err;
+            var liked = result;
+            res.render("liked",{likedsongs: liked});
+        })
+    }
+    else{
+        res.redirect("/login");
+    }
+});
             
 
 
@@ -161,13 +201,21 @@ app.post("/", function(req, res){
         });
     }
     else if(req.body.reg==="regist"){
-        connection.query('Insert into users (name,email,password) values(?,?,?)', [req.body.name,req.body.email,req.body.password], function (err, result) {
+        connection.query('SELECT * from users where email = ?', [req.body.email], function (err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
+            if(result.length === 0){
+                connection.query('Insert into users (name,email,password) values(?,?,?)', [req.body.name,req.body.email,req.body.password], function (err, result) {
+                    if (err) throw err;
+                    console.log("1 record inserted");
+                });
+                isLogged = true;
+                email = req.body.email;
+                res.redirect("/");
+            }
+            else{
+                res.render("login",{check: check5});
+            }
         });
-        isLogged = true;
-        email = req.body.email;
-        res.redirect("/");
     }
     else if(req.body.home === "logout"){
         isLogged = false;
@@ -193,8 +241,9 @@ app.post("/songs", function(req, res){
             if (err) throw err;
             console.log("1 record inserted");
         });
+
         
-        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list});
+        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like1});
     }
     else if(req.body.control === "prev"){
         index--;
@@ -206,14 +255,46 @@ app.post("/songs", function(req, res){
             console.log("1 record inserted");
         });
         
-        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list});
-    } else if(req.body.addold === "addold"){
-        connection.query('Insert into playlist (email,playlistname,artistname,songname) values(?,?,?,?)', [email,req.body.playlistname,allMusic[index].artist,allMusic[index].name], function (err, result) {
+        connection.query('select * from liked where email= ? and songname = ?', [email,allMusic[index].name], function (err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
-            playlist.push({email: email, playlistname: req.body.playlistname, songname: allMusic[index].name});
+            if(result.length === 0){
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like1});
+            }
+            else{
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like2});
+            }
         });
-        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list});
+        } else if(req.body.addold === "addold"){
+        connection.query('SELECT * from playlist where email = ? and playlistname = ? and songname = ?', [email,req.body.playlistname,allMusic[index].name], function (err, result) {
+            if (err) throw err;
+            if(result.length === 0){
+                connection.query('Insert into playlist (email,playlistname,artistname,songname) values(?,?,?,?)', [email,req.body.playlistname,allMusic[index].artist,allMusic[index].name], function (err, result) {
+                    if (err) throw err;
+                    console.log("1 record inserted");
+                    playlist.push({email: email, playlistname: req.body.playlistname, songname: allMusic[index].name});
+                });
+                connection.query('select * from liked where email= ? and songname = ?', [email,allMusic[index].name], function (err, result) {
+                    if (err) throw err;
+                    if(result.length === 0){
+                        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong3,like:like1});
+                    }
+                    else{
+                        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong3,like:like2});
+                    }
+                });
+             }
+            else{
+                connection.query('select * from liked where email= ? and songname = ?', [email,allMusic[index].name], function (err, result) {
+                    if (err) throw err;
+                    if(result.length === 0){
+                        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong2,like:like1});
+                    }
+                    else{
+                        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong2,like:like2});
+                    }
+                });  
+              }
+        });
     } else if(req.body.addnew === "addnew"){
         console.log(req.body.playlistname);
         connection.query('Insert into playlist (email,playlistname,artistname,songname) values(?,?,?,?)', [email,req.body.playlistname,allMusic[index].artist,allMusic[index].name], function (err, result) {
@@ -221,7 +302,29 @@ app.post("/songs", function(req, res){
             console.log("1 record inserted");
             playlist.push({email: email, playlistname: req.body.playlistname, songname: allMusic[index].name});
         });
-        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list});
+        connection.query('select * from liked where email= ? and songname = ?', [email,allMusic[index].name], function (err, result) {
+            if (err) throw err;
+            if(result.length === 0){
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong3,like:like1});
+            }
+            else{
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong3,like:like2});
+            }
+        });
+        }
+    else if(req.body.like === "like"){
+        connection.query('Insert into liked (email,artistname,songname) values(?,?,?)', [email,allMusic[index].artist,allMusic[index].name], function (err, result) {
+            if (err) throw err;
+            console.log("1 record inserted");
+        });
+        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like2});
+    }
+    else if(req.body.like === "liked"){
+        connection.query('delete from liked where email = ? and songname = ?', [email,allMusic[index].name], function (err, result) {
+            if (err) throw err;
+            console.log("1 record deleted");
+        });
+        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like1});
     }
     else {
         allMusic.forEach(function(song){
@@ -234,8 +337,16 @@ app.post("/songs", function(req, res){
             console.log("1 record inserted");
         });
         
-        res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list});
-}
+        connection.query('select * from liked where email= ? and songname = ?', [email,allMusic[index].name], function (err, result) {
+            if (err) throw err;
+            if(result.length === 0){
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like1});
+            }
+            else{
+                res.render("songs", {img: allMusic[index].name,sname: allMusic[index].name,audio: allMusic[index].name,artist: allMusic[index].artist,playlists: list,checkplaylist:checksong1,like:like2});
+            }
+        });
+    }
     }
     else{
         res.redirect("/login");
@@ -284,10 +395,48 @@ app.post("/playlist-songs", function(req, res){
     });
 });
 
+app.post("/search", function(req, res){
+    if(isLogged===true){
+        if(req.body.home === "search"){
+            var searchresults = [];
+            res.render("search",{songslist: allMusic,searchresults: searchresults});
+        }
+        else if(req.body.searchbutton === "searchbutton"){
+            var songs =[]
+            connection.query('SELECT * from songs where name LIKE ?', ['%'+req.body.input+'%'], function (err, result) {
+                if (err) throw err;
+                var searchresults = result;
+                res.render("search",{songslist: allMusic,searchresults: searchresults});
+            });
+        }
 
+    }
+    else{
+        res.redirect("/login");
+    }
+});
 
+app.post("/profile", function(req, res){
+    if(isLogged===true){
+        if(req.body.home === "profile"){
+            res.redirect("/profile");
+        }
+    }
+    else{
+        res.redirect("/login");
+    }
+});
 
-
+app.post("/liked", function(req, res){
+    if(isLogged===true){
+        if(req.body.home === "liked"){
+            res.redirect("/liked");
+        }
+    }
+    else{
+        res.redirect("/login");
+    }
+});
 
 
 app.listen(3000, function(){
