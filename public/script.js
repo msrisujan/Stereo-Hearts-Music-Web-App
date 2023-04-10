@@ -109,3 +109,8 @@ btnPopup.addEventListener("click", () => {
 iconClose.addEventListener("click", () => {
   wrapper1.classList.remove("active-popup");
 });
+
+const playlistcheck = document.querySelector(".playlistcheck");
+    setTimeout(() => {
+      playlistcheck.style.display = "none";
+    }, 2000);
