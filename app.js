@@ -20,8 +20,8 @@ var isLogged = false;
 var connection = mysql.createConnection({
     host: 'sujan.c5rlvnugwvna.ap-south-1.rds.amazonaws.com',
     user: 'admin',
-    password: 'stereoheart',
-    database: 'sujan'
+    password: 'heartstereo',
+    database: 'heartstereo'
 });
 
 connection.connect(function(err) {
