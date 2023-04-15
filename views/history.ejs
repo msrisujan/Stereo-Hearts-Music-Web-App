@@ -7,8 +7,8 @@
     <title>Stereo Hearts</title>
 </head>
 <body>
-    <form action="/" method="post">
-        <button name="home" value="login" type="submit"><%= username %></button>
+    <form action="/profile" method="post">
+        <button name="home" value="profile" type="submit"><%= username %></button>
     </form>
 
     <%  historysongslist.slice().reverse().forEach(item => {%>
