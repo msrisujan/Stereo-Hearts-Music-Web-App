@@ -18,10 +18,10 @@ var isLogged = false;
 
 
 var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'sujanbannu',
-    database: 'user1'
+    host: 'sujan.c5rlvnugwvna.ap-south-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'stereoheart',
+    database: 'sujan'
 });
 
 connection.connect(function(err) {

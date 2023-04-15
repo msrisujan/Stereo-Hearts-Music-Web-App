@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,13 +9,11 @@
 </head>
 <body>
     <div class="wrapper active-popup">
-        <span class="icon-close">
-           <ion-icon name="close"></ion-icon> 
-          <!-- <ion-icon name="close-outline"></ion-icon>  -->
-        </span>
     
         <div class="form-box login">
+          
           <h2>Login</h2>
+          
           <form action="/" method="post" >
             <div class="input-box">
               <span class="icon"><ion-icon name="mail"></ion-icon></span>
@@ -38,10 +36,13 @@
               </p>
             </div>
           </form>
+        
         </div>
     
         <div class="form-box register">
+          
           <h2>Registration</h2>
+          
           <form action="/" method="post" >
             <div class="input-box">
               <span class="icon"><ion-icon name="person"></ion-icon></span>
@@ -71,8 +72,63 @@
               </p>
             </div>
           </form>
+        
         </div>
       </div>
+      
       <script src="log.js"></script>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Design by foolishdeveloper.com -->
+      <title>Login</title>
+  
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="login.css">
+  </head>
+  <body>
+      <div class="background">
+          <div class="shape"></div>
+          <div class="shape"></div>
+      </div>
+      <div class="login-box">
+        <form action="/" method="post">
+          <h3>Login</h3>
+
+            <label for="username">Username</label>
+            <input type="email" placeholder="Email" id="username" required name="email">
+
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" id="password" required name="password">
+            <button type="submit" class="btn" name="reg" value="logi">Login</button>
+          <div class="social">
+            <a href="#" class="register-link"></i>Don't have an account? Register</a>
+          </div>
+        </form>
+      </div>
+      <div class="register-box passive">
+        <form action="/" method="post">
+          <h3>Register</h3>
+
+            <label for="username">Username</label>
+            <input type="email" placeholder="Email" id="username" required name="email">
+
+            <label for="password">Password</label>
+            <input type="password" placeholder="Password" id="password" required name="password">
+
+            <button type="submit" class="btn" name="reg" value="regist">Register</button>
+          <div class="social">
+            <a href="#" class="login-link">Already have an account? Login</a>
+          </div>
+        </form>
+      </div>
+      <script src="log.js"></script>
+  </body>
 </html>
+  

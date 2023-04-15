@@ -1,0 +1,26 @@
+body{
+    background-image: url(images/2183086.jpg);
+}
+
+.profile-box{
+    z-index: 1;
+    background-color: #22011C;
+    padding: 10%;
+    color: white;
+    margin-top: 10%;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+.profile-pic{
+    border-radius: 50%;
+    width: 200px;
+}
+
+.profile-pic:hover{
+    opacity: 0.5;
+}
+
+.side-heading-col{
+    color: #F9D7C0;
+}

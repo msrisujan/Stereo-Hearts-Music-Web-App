@@ -3,111 +3,146 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stereo Hearts</title>
-  <link rel="stylesheet" href="style.css">
+  <title><%= sname %> - <%= artist %></title>
+  <link rel="stylesheet" href="songs.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
-  
-<button class="btnlogin-popup">add to playlist</button>
 
-<form action="/songs" method="post">
-  <button type="submit" name="like" value="<%= like %>"><%= like %></button>
-</form>
-<br>
-<div class="playlistcheck">
-  <p><%= checkplaylist %></p>
-</div>
-
-
-<div class="wrapper1">
-  <span class="icon-close">
-     <ion-icon name="close"></ion-icon> 
-    <!-- <ion-icon name="close-outline"></ion-icon>  -->
-  </span>
-
-  <div class="form-box login">
-    <h2>Playlists</h2>
-    <form action="/songs" method="post" >
-      <%  playlists.forEach(item =>{ %>
-        <form action="/songs" method="post">
-          <input type="text" name="playlistname" value="<%= item.playlistname %>" style="display: none;">
-          <button name="addold" value="addold"><%= item.playlistname %></button>
-        </form>
-      <% }) %>
+  <div class="container">
+    
+    <div class="row">
       
-      <div class="login-register">
-        <p>
-          <a href="#" class="register-link">add to new playlist</a>
-        </p>
-      </div>
-    </form>
-  </div>
+      <div class="col-md-12">
+        
+        <div class="wrapper">
+          
+          <div class="top-bar">
+            
+            <button class="btnlogin-popup" style="background: none; border: none;" title="Add to Playlist"><i class="fa-solid fa-plus"></i></button>
+            <form action="/songs" method="post">
+              <% if(like === "like"){ %>
+                <button type="submit" name="like" value="<%= like %>" style="background: none; border: none;"><i class="fa-regular fa-heart fa-lg"></i></button>
+              <% } else{ %>
+                <button type="submit" name="like" value="<%= like %>" style="background: none; border: none;"><i class="fa-solid fa-heart" style="color: #683398;"></i></button>
+              <% } %>
+              
+            </form>
+          </div>
 
-  <div class="form-box register">
-    <h2>Create New Playlist</h2>
-    <form action="/songs" method="post" >
-            <div class="input-box">
-              <input type="text" required name="playlistname">
-              <label>Enter playlist name</label>
+          <div class="img-area">
+            <img src="images/<%= img %>.png" alt="<%= img %>">
+          </div>
+
+          <div class="song-details">
+            <p class="name"><%= sname %></p>
+            <p class="artist"><%= artist %></p>
+          </div>
+
+          <div class="progress-area">
+            <div class="progress-bar">
+              <audio id="main-audio" onload="play()" src="songs/<%= audio %>.mp3"></audio>
             </div>
+            <div class="song-timer">
+              <span class="current-time">0:00</span>
+              <span class="max-duration">0:00</span>
+            </div>
+          </div>
+          
+          <div class="controls">
+
+           
+            
+            <form action="/songs" method="post">
+              <button class="prev" name="control" value="prev" type="submit" style="background: none; border: none;"><i id="prev" class="material-icons">skip_previous</i></button>
+            </form>
+              
+            <div class="play-pause">
+              <form action="/songs" method="post">
+                  <button class="play" name="control" value="play" type="submit"></button>
+              </form>
+            </div>
+            
+              <form action="/songs" method="post">
+                  <button class="next" name="control" value="next" type="submit" style="background: none; border: none;"><i id="next" class="material-icons">skip_next</i></button>
+              </form>
+             
+          </div>
+
+        </div>
+
+      </div>
+      <div class="popup playlistcheck" id="popup">
+        <p><%= checkplaylist %></p>
+    </div>
+
+      <div class="col-md-12" style="position: absolute; transform: translate(-120%, -120%);">
+          
+          <!-- Checks if a song is in playlist or not -->
       
-            <button type="submit" class="btn" name="addnew" value="addnew">Create</button>
-      <div class="login-register">
-        <p>
-          <a href="#" class="login-link">add to existing playlist</a>
-        </p>
-      </div>
-    </form>
-  </div>
-</div>
-        
+      
+          <!-- Playlist Popup -->
+          <div class="wrapper1">
+            <span class="icon-close">
+              <i class="fa-solid fa-xmark"></i></ion-icon> 
+              <!-- <ion-icon name="close-outline"></ion-icon>  -->
+            </span>
+      
+            <div class="form-box login">
+              <h2>Select Playlist</h2>
+              <form action="/songs" method="post" style="text-align: center; font-size: 1.5rem;">
+                <%  playlists.forEach(item =>{ %>
+                  <form action="/songs" method="post" style="text-align: center; font-size: 1.5rem;">
+                    <input type="text" name="playlistname" value="<%= item.playlistname %>" style="display: none;">
+                    <button name="addold" id="open" value="addold" style="background: none; color: #999; border: none;"><%= item.playlistname %></button>
+                  </form>
+                <% }) %>
+              
+                <div class="login-register">
+                  <p>
+                    <a href="#" class="register-link" style="color: #683398;">Create New</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+           
+      
+          <div class="form-box register">
+            <h2>Create New Playlist</h2>
+            <form action="/songs" method="post" >
+                    <div class="input-box" style="color: #999;">
+                      <input type="text" required name="playlistname" style="color: #683398;">
+                      <label style="color: #999;">Enter playlist name</label>
+                    </div>
+              
+                    <button type="submit" class="btn" name="addnew" value="addnew">Create</button>
+              <div class="login-register">
+                <p>
+                  <a href="#" class="login-link" style="color:#683398;">Add to Existing</a>
+                </p>
+              </div>
+            </form>
+          </div>
 
-        
+        </div>
 
-  <div class="wrapper">
-    <div class="top-bar">
-      <i class="material-icons">expand_more</i>
-      <span>Now Playing</span>
-      <i class="material-icons">more_horiz</i>
-    </div>
-    <div class="img-area">
-      <img src="images/<%= img %>.png" alt="<%= img %>">
-    </div>
-    <div class="song-details">
-      <p class="name"><%= sname %></p>
-      <p class="artist"><%= artist %></p>
-    </div>
-    <div class="progress-area">
-      <div class="progress-bar">
-        <audio id="main-audio" onload="play()" src="songs/<%= audio %>.mp3"></audio>
-      </div>
-      <div class="song-timer">
-        <span class="current-time">0:00</span>
-        <span class="max-duration">0:00</span>
-      </div>
-    </div>
-    <div class="controls">
-        
-      <form action="/songs" method="post">
-        <button class="prev" name="control" value="prev" type="submit"><i id="prev" class="material-icons">skip_previous</i></button>
-      </form>
-
-     
-
-        
-      <div class="play-pause">
-        <form action="/songs" method="post">
-            <button class="play" name="control" value="play" type="submit"><i id="play" class="material-icons">play_arrow</i></button>
-        </form>
       </div>
       
-        <form action="/songs" method="post">
-            <button class="next" name="control" value="next" type="submit"><i id="next" class="material-icons">skip_next</i></button>
-        </form>
-       
     </div>
+  
   </div>
-  <script src="script.js"></script>
+    
+        
+
+        
+  <!-- Song Box -->
+  
+  
+
+  <script src="songs.js">
+
+  </script>
 </body>
 </html>
