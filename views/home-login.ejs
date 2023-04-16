@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stereo Hearts</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="home-login.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
 </head>
 <body>
@@ -18,61 +18,48 @@
       </div>
 
       <div class="navigation">
-        <ul>
+        <ul>  
           <li>
             <form action="/" method="post">
-                <button name="home1" value="history" type="submit"><span class="fav1">
-                        <span class="fa fas fa-book1">Home</span></button>
+                <button name="home1" value="history" type="submit">
+                        <span class="fav2"><i class="bi bi-house"></i>  Home</span></button>
             </form> 
-        
-        
           </li>
 
           <li>
             <form action="/history" method="post">
-                <button name="home1" value="history" type="submit"><span class="fav1">
-                        <span class="fav2">History</span></button>
-            </form> 
-        
-        
+                <button name="home1" value="history" type="submit">
+                        <span class="fav2"><i class="bi bi-hourglass-top"></i>  History</span></button>
+            </form>         
           </li>
 
           <li>
             <form action="/search" method="post">
-                <button name="home" value="search" type="submit"><span class="fav1">
-                    <span class="fav2">Search</span></button>
+                <button name="home" value="search" type="submit">
+                    <span class="fav2"><i class="bi bi-search"></i>  Search</span></button>
             </form>
-        
           </li> 
+
           <li>
             <form action="/" method="post">
-              <button name="home" value="logout" type="submit"><span class="fav2">Logout</span></button>
+              <button name="home" value="logout" type="submit"><span class="fav2"><i class="bi bi-box-arrow-right"></i>  Logout</span></button>
           </form>
-          </li>           
-        </ul>
-      </div>
-
-      <div class="navigation">
-        <ul>
+          </li>   
+  
           <li>
             <form action="/playlist" method="post">
-              <button name="home" value="playlist" type="submit"><span class="fav1">Playlist</span></button>
+              <button name="home" value="playlist" type="submit">
+                <span class="fav2"><i class="bi bi-music-note-list"></i>  Playlist</span></button>
           </form>
           </li>
-
           <li>
             <form action="/liked" method="post">
-              <button name="home" value="liked" type="submit"><span class="fav1">Liked Songs</span></button>
+              <button name="home" value="liked" type="submit"><span class="fav2"><i class="bi bi-file-earmark-music"></i>  Liked Songs</span></button>
           </form>
           </li>
         </ul>
       </div>
 
-      <div class="policies">
-        <ul>
-          
-        </ul>
-      </div>
     </div>
 
     <div class="main-container">
@@ -96,15 +83,14 @@
             <li class="divider">|</li>
           </ul>
           <form action="/profile" method="post">
-            <button name="home" value="profile" type="submit"><%= username %></button>
+            <button name="home" value="profile" type="submit"><p>Profile</p></button>
         </form>
-    
         </div>
+
+
       </div>
 
       <div class="spotify-playlists">
-
-
 
         <div class="list">
           <%  songslist.slice(8,20).forEach(item => {%>
@@ -147,7 +133,7 @@
             <button name="song" value="<%= item.name %>"><img src="/images/<%= item.name %>.png" />
               <div class="play">
                 <span class="fa fa-play"></span>
-              </div>
+        </div>
               <h4><%= item.name %></h4>
               <p><%= item.artist %></p></button>
           </form>

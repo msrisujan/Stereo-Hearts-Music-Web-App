@@ -7,6 +7,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+body{
+  background:linear-gradient(50deg,rgb(76, 175, 221),rgb(30, 159, 195),rgb(74, 159, 177),rgb(8, 117, 131),rgb(5, 36, 91),rgb(0, 7, 11));
+}
+
 header {
   position: fixed;
   top: 0;
@@ -19,9 +23,102 @@ header {
   z-index: 99;
 }
 
+.mainpage .wrapper{
+  position:absolute;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  z-index:-1;
+}
+.mainpage .wrapper .box div{
+  position:absolute;
+  width:60px;
+  height:60px;
+  background-color: transparent;
+  border:5px solid rgba(255,255,255,0.8);
+}
+
+.box div:nth-child(1){
+  top:12%;
+  left:42%;
+  animation:animate 10s linear infinite;
+}
+
+.box div:nth-child(2){
+  top:70%;
+  left:50%;
+  animation:animate 7s linear infinite;
+}
+
+.box div:nth-child(3){
+  top:17%;
+  left:6%;
+  animation:animate 9s linear infinite;
+}
+
+.box div:nth-child(3){
+  top:20%;
+  left:60%;
+  animation:animate 10s linear infinite;
+}
+
+.box div:nth-child(4){
+  top:20%;
+  left:60%;
+  animation:animate 10s linear infinite;
+}
+
+.box div:nth-child(5){
+  top:67%;
+  left:10%;
+  animation:animate 6s linear infinite;
+}
+
+.box div:nth-child(6){
+  top:80%;
+  left:70%;
+  animation:animate 12s linear infinite;
+}
+
+.box div:nth-child(7){
+  top:60%;
+  left:80%;
+  animation:animate 15s linear infinite;
+}
+
+.box div:nth-child(8){
+  top:32%;
+  left:25%;
+  animation:animate 16s linear infinite;
+}
+
+.box div:nth-child(9){
+  top:90%;
+  left:25%;
+  animation:animate 9s linear infinite;
+}
+
+.box div:nth-child(10){
+  top:80%;
+  left:70%;
+  animation:animate 5s linear infinite;
+}
+
+@keyframes animate{
+  0%{
+    transform: scale(0) translateY(0) rotate(0);
+    opacity:1;
+  }
+
+  100%{
+    transform: scale(1.3) translateY(-90px) rotate(360deg);
+    opacity:0;
+  }
+}
+
 .logo {
   font-size: 2em;
-  color: #fff;
+  color: #e0cece;
   user-select: none;
 }
 
@@ -32,7 +129,7 @@ h3 {
     color: white;		 
  }	  
 
-.search-box{
+.mainpage .searchbox{
   display:flex;
   flex-direction:column;
   margin-top:100px;
@@ -140,7 +237,6 @@ h3 {
   height: 45px;
   background: #162938;
   border: none;
-  outline: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 1em;
@@ -244,8 +340,9 @@ form {
     --width-of-input: 500px;
     --height-of-input: 40px;
     --border-height: 2px;
-    --input-bg:white;
-    --border-color: #2f2ee9;
+    --input-bg:rgb(14, 2, 2);
+    --border-color:  #45ce2f;
+    --border-width:50px;
     --border-radius: 30px;
     --after-border-radius: 1px;
     position: relative;
@@ -263,7 +360,7 @@ form {
   .input {
     font-size: 0.9rem;
     background-color: transparent;
-    -webkit-text-fill-color: black;
+    -webkit-text-fill-color: rgb(244, 236, 236);
     width: 100%;
     height: 100%;
     padding-inline: 0.5em;
@@ -323,4 +420,28 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out";
     -webkit-transition-delay: 9999s;
+}
+
+.searchresult {
+  margin-top: 10px;
+  background-color:transparent;
+  border:none;
+  border-left:4px solid rgb(90, 10, 90);
+  margin-bottom: 10px;
+  margin-left:30%;
+}
+
+.searchresult p{
+  color:white;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  transition:0.5s;
+}
+
+.searchresult :hover{
+  color:#0bcfc5;
+  background-color:rgb(90, 10, 90);
+}
+
+.searchresult p:hover{
+  letter-spacing:0.3rem;
 }

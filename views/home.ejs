@@ -10,63 +10,57 @@
 </head>
 <body>
 
-    <div class="sidebar">
-      <div class="logo">
-        <a href="#">
-          <img src="/images/logo.png" alt="Logo" />
-        </a>
-      </div>
-
-      <div class="navigation">
-        <ul>
-          <li>
-            <form action="/" method="post">
-                <button name="home1" value="history" type="submit"><span class="fav1">
-                        <span class="fa fas fa-book1">Home</span></button>
-            </form> 
-        
-        
-          </li>
-
-          <li>
-            <form action="/history" method="post">
-                <button name="home1" value="history" type="submit"><span class="fav1">
-                        <span class="fav2">History</span></button>
-            </form> 
-        
-        
-          </li>
-
-          <li>
-            <form action="/search" method="post">
-                <button name="home" value="search" type="submit"><span class="fav1">
-                    <span class="fav2">Search</span></button>
-            </form>
-        
-          </li>            
-        </ul>
-      </div>
-
-      <div class="navigation">
-        <ul>
-          <li>
-            <form action="/playlist" method="post" class="int">
-                <button name="home1" value="logout" type="submit"><span class="fav1">Playlist</span></button>
-            </form>
-          </li>
-
-          <li>
-            <button name="home1" value="logout" type="submit"><span class="fav1">Liked Songs</span></button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="policies">
-        <ul>
-          
-        </ul>
-      </div>
+  <div class="sidebar">
+    <div class="logo">
+      <a href="#">
+        <img src="/images/logo.png" alt="Logo" />
+      </a>
     </div>
+
+    <div class="navigation">
+      <ul>  
+        <li>
+          <form action="/" method="post">
+              <button name="home1" value="history" type="submit">
+                      <span class="fav2"><i class="bi bi-house"></i>  Home</span></button>
+          </form> 
+        </li>
+
+        <li>
+          <form action="/history" method="post">
+              <button name="home1" value="history" type="submit">
+                      <span class="fav2"><i class="bi bi-hourglass-top"></i>  History</span></button>
+          </form>         
+        </li>
+
+        <li>
+          <form action="/search" method="post">
+              <button name="home" value="search" type="submit">
+                  <span class="fav2"><i class="bi bi-search"></i>  Search</span></button>
+          </form>
+        </li> 
+
+        <li>
+          <form action="/" method="post">
+            <button name="home" value="logout" type="submit"><span class="fav2"><i class="bi bi-box-arrow-right"></i>  Logout</span></button>
+        </form>
+        </li>   
+
+        <li>
+          <form action="/playlist" method="post">
+            <button name="home" value="playlist" type="submit">
+              <span class="fav2"><i class="bi bi-music-note-list"></i>  Playlist</span></button>
+        </form>
+        </li>
+        <li>
+          <form action="/liked" method="post">
+            <button name="home" value="liked" type="submit"><span class="fav2"><i class="bi bi-file-earmark-music"></i>  Liked Songs</span></button>
+        </form>
+        </li>
+      </ul>
+    </div>
+
+  </div>
 
     <div class="main-container">
       <div class="topbar">
