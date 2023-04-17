@@ -13,9 +13,22 @@
 </head>
 
 <body>
-
-
-    <div class="search-box">
+  <div class="mainpage">
+    <div class="wrapper">
+      <div class="box">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>            
+      </div>
+  </div>
+    <div class="searchbox">
       <div class="row">
         <form class="form" action="/search" method="post">
           <button type="submit" name="searchbutton" value="searchbutton" >
@@ -25,7 +38,7 @@
                 stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
           </button>
-          <input id="input-box" class="input" name="input" placeholder="Type your text" required type="text" autocomplete="off">
+          <input id="input-box" class="input" name="input" placeholder="What do you want to listen to?" required type="text" autocomplete="off">
           <button class="reset" type="reset">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
@@ -34,21 +47,15 @@
           </button>
         </form>
       </div>
-      <div class="result-box">
-
-      </div>
-
     </div>
+  </div>
 
     <%  searchresults.forEach(item => {%>
         <form action="/songs" method="post">
-            <button name="song" value="<%= item.name %>"><h2><%= item.artist %> - <%= item.name %></h2></button>
+            <button name="song" class="searchresult" value="<%= item.name %>"><p><%= item.artist %>  -  <%= item.name %></p></button>
         </form>
         
     <%})%>
-
-    
- 
 
   <script>
     let availableKeywords=[];

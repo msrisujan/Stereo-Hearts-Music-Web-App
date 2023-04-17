@@ -5,16 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stereo Heart</title>
+    <link rel="stylesheet" href="liked.css">
 </head>
 <body>
-    <h1>Liked songs</h1>
+    <div class="top">
+        <h1>Liked songs</h1>
 
     <%  likedsongs.forEach(item => {%>
-        <form action="/songs" method="post">
-            <button name="song" value="<%= item.songname %>"><h2><%= item.artistname %> - <%= item.songname %></h2></button>
+        <form action="/songs" method="post" class="playlistsongs">
+            <button name="song" value="<%= item.songname %>" ><h2><%= item.artistname %> - <%= item.songname %></h2></button>
         </form>
         
     <%})%>
 
+    </div>
+    
 </body>
 </html>

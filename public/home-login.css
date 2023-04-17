@@ -1,0 +1,285 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color:black;
+  font-family: 'Montserrat', sans-serif;
+  box-shadow: 1px #2a0123 ;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 196px;
+  background-color: #22011C;
+  padding: 24px;
+}
+.sidebar .logo img {
+  width: 200px;
+}
+.sidebar .navigation ul {
+  list-style: none;
+  margin-top: 5px;
+}
+.sidebar .navigation ul li {
+  background-color: #22011C;
+  padding: 10px 0px;
+}
+.sidebar .navigation ul li  {
+  color: #f1ecf1;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.sidebar .navigation ul li :hover,
+.sidebar .navigation ul li :active,
+.sidebar .navigation ul li :focus {
+  color: #28aebb;
+}
+
+.sidebar .navigation ul li :hover ,
+.sidebar .navigation ul li :focus  {
+  color: #9c2d2d;
+}
+.sidebar .navigation ul li .fav1 {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.sidebar .navigation ul li button{
+  background-color: #22011C;
+  margin-bottom: 3px;
+  border-radius: 40px;
+  border: 1px solid #5faeb6;
+  
+}
+.sidebar .navigation ul li .fav2{
+  font-size: medium;
+  color:whitesmoke;
+
+}
+.sidebar .navigation ul li .fav2:hover{
+  color:#28aebb;
+}
+.sidebar .navigation ul li button:hover{
+  letter-spacing: .2em;
+  border-color:#7c136b;
+  box-shadow: 0 0 35px #8b387d;
+}
+.sidebar .navigation ul li a:hover .fa:hover,
+.sidebar .navigation ul li a:hover .fa:active,
+.sidebar .navigation ul li a:hover .fa:focus {
+  color: #f0ecec;
+}
+.sidebar .policies {
+  position: absolute;
+  bottom: 100px;
+}
+.sidebar .policies ul {
+  list-style: none;
+}
+.sidebar .policies ul li {
+  padding-bottom: 5px;
+}
+.sidebar .policies ul li a {
+  color: #b3b3b3;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 10px;
+}
+.sidebar .policies ul li a:hover,
+.sidebar .policies ul li a:active,
+.sidebar .policies ul li a:focus {
+  text-decoration: underline;
+}
+
+.main-container {
+  margin-left: 245px;
+  margin-bottom: 100px;
+}
+
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #010000;
+  padding: 14px 30px;
+}
+.topbar .prev-next-buttons button {
+  color: #7a7a7a;
+  cursor: not-allowed;
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  font-size: 18px;
+  border: 0px;
+  background-color: #090909;
+  margin-right: 10px;
+}
+.topbar .navbar {
+  display: flex;
+  align-items: center;
+}
+.topbar .navbar ul {
+  list-style: none;
+}
+.topbar .navbar ul li {
+  display: inline-block;
+  margin: 0px 8px;
+  width: 70px;
+}
+.topbar .navbar ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.topbar .navbar ul li a:hover,
+.topbar .navbar ul li a:active,
+.topbar .navbar ul li a:focus {
+  color: #ffffff;
+  font-size: 15px;
+}
+.topbar .navbar ul li.divider {
+  color: #ffffff;
+  font-size: 26px;
+  margin: 0px 20px;
+  width: auto;
+}
+.topbar .navbar button {
+  background-color: #1b1a1a;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 14px 30px;
+  color:white;
+  border: 3px solid aqua;
+  box-shadow: 2px aqua;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.topbar .navbar button p{
+  color:rgb(232, 221, 221);
+}
+.topbar .navbar button:hover,
+.topbar .navbar button:active,
+.topbar .navbar button:focus {
+  box-shadow: 0 0 32px aqua;
+  background-color: #3a98b3bf;
+  color:whitesmoke;
+  letter-spacing: 0.2em;
+}
+.spotify-playlists {
+  padding: 20px 40px;
+}
+.spotify-playlists h2 {
+  color: #ffffff;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.spotify-playlists .list {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.spotify-playlists .list form{
+  background-color: #6a1919;
+}
+.spotify-playlists .list .item {
+  min-width: 140px;
+  width: 160px;
+  padding: 15px;
+  background-color: #181818;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover {
+  background-color: #482248;
+  border: 3px solid #269b97;
+  box-shadow: 0 0 35px  #3ecdc8;
+}
+.spotify-playlists .list .item img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.spotify-playlists .list .item .play {
+  color:rgb(9, 9, 9);
+  position: relative;
+}
+.spotify-playlists .list .item .play .fa {
+  position: absolute;
+  right: 10px;
+  top: -60px;
+  padding: 18px;
+  background-color: #1db954;
+  border-radius: 100%;
+  opacity: 0;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover .play .fa {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+.spotify-playlists .list .item h4 {
+
+  color: #080101;
+  font-size: 14px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spotify-playlists .list .item p {
+  color: #0e0e0e;
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+.spotify-playlists .list .item p
+.spotify-playlists .list .item p :hover {
+  color:rgb(248, 243, 243);
+}
+.spotify-playlists hr {
+  margin: 70px 0px 0px;
+  border-color: #636363;
+}
+
+.preview {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, #460c3b, #112a4a);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.preview h6 {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.preview p {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.preview button {
+  background-color: #ffffff;
+  color: #22011C;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 14px 30px;
+  border: 0px;
+  border-radius: 40px;
+  cursor: pointer;
+}
