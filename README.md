@@ -46,7 +46,7 @@ npm install
 5. Start the application:
 
 ```bash
-npm start
+node app.js
 ```
 
 6. Open your web browser and navigate to `http://localhost:3000` to access HeartStereo.
